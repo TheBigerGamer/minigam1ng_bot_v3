@@ -10,7 +10,7 @@ exports.run = async (client, msg, [bet, credit]) => {
     client.funcs.transactions(msg, {credit: [credit, "*", result[1]]}, function(data) {
         if (data.valid === false) { return; }
 
-        msg.channel.send(`**Sum:** ${sum} \n**Your Guess:** ${bet} \n*You have ${result[0]} ${Math.abs(data.earnings)} credits.*`);
+        msg.channel.send(`**Sum:** ${sum} \n**Adivinhaste:** ${bet} \n*Ganhaste ${result[0]} ${Math.abs(data.earnings)} créditos.*`);
     });
 };
 
@@ -24,9 +24,9 @@ exports.conf = {
   
 exports.help = {
     name: "chouhan",
-    description: "Bet your credits on if the sum of six dice are even or odd.",
+    description: "Aposta os teus créditos num jogo de seis dados.",
     usage: "<even|odd> [credits:int]",
     usageDelim: " ",
-    extendedHelp: "A simple Japanese dice game. Six dice are rolled and the results kept secret. Players bet on whether the sum on the dice is odd or even.",
+    extendedHelp: "Um jogo Japones simples. Seis dados são atirados e o resultado é mantido em segredo. Os Players apostam se é odd ou even.",
     humanUse: "(even|odd)_(amount)"
 };
