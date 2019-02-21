@@ -11,7 +11,7 @@ exports.run = async (client, msg) => {
             var die = Math.random();
     
             const Fisher = [
-                ["trash", "fish", "crab", "squid", "shark"],
+                ["porra", "peixe", "caranguejo", "lula (da Silva)", "tubarão"],
                 [0, row.fish, row.crab, row.squid, row.shark]
             ];
     
@@ -22,11 +22,11 @@ exports.run = async (client, msg) => {
             else { var results = 4; }
     
             var kind = Fisher[0][results];
-            var result = (kind === "trash") ? "You have lost 10 credits" : "You have placed the fish in your inventory";
+            var result = (kind === "porra") ? "Perdeu 10 créditos" : "Puseste peixe no teu inventário";
     
             if (kind !== "trash") { db.run(`UPDATE material SET ${kind} = ${Number(Fisher[1][results]) + 1} WHERE userId = ${msg.author.id}`); }
     
-            msg.channel.send(`${msg.author.username}, you have caught ${items[kind].emote}. ${result}.`);
+            msg.channel.send(`${msg.author.username}, apanhaste ${items[kind].emote}. ${result}.`);
         });
         db.close();
     });
@@ -42,8 +42,8 @@ exports.conf = {
 };
   
 exports.help = {
-    name: "fish",
-    description: "Fish and try to turn your credits into a fortune!",
+    name: "pesca",
+    description: "Pesca e tenta encontrar uma fortuna!",
     usage: "",
-    extendedHelp: "Spend 10 credits to fish and catch yourself a fortune!"
+    extendedHelp: "Gasta 10 créditos e tenta encontrar uma fortuna!"
 };
