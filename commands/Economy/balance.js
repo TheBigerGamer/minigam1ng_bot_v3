@@ -24,8 +24,8 @@ exports.run = async (client, msg, [user]) => {
                 .setColor(0x04d5fd)
                 .setAuthor(`User: ${data.user[0].username}`, avatar.displayAvatarURL())
                 .setDescription(`ID: ${data.user[0].id}`)
-                .addField("Credits:", (row.credits).toLocaleString() + " (Last redeem: " + time[2] + " ago)")
-                .addField("Reputation:", row.rep + " (Last Rep: " + time[3] + " ago)");
+                .addField("Creditos:", (row.credits).toLocaleString() + " (Último claim: " + time[2] + " atrás)")
+                .addField("Reputação:", row.rep + " (Última Reputação: " + time[3] + " atrás)");
         
             msg.channel.send({embed});
         });
@@ -44,7 +44,7 @@ exports.conf = {
   
 exports.help = {
     name: "balance",
-    description: "Check credit amount and the last time the user recieved their daily.",
+    description: "Vê o teu dinheiro e a última zez que recalamate o teu dinheiro diário.",
     usage: "[user:str]",
     humanUse: "(user)"
 };
