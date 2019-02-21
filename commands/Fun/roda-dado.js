@@ -1,12 +1,12 @@
 exports.run = (client, message, sides) => {
     if (sides.length < 1) { sides = 6; }
-    if (sides === 0) { return message.channel.send("You can't roll from 0!"); }
+    if (sides === 0) { return message.channel.send("Não podes rodar pelo 0!"); }
 
     if (Number.isInteger(Number(sides))) { 
         var y = Math.floor(Math.random() * (Math.floor(sides) - Math.ceil(1) + 1)) + Math.ceil(1);
-        return message.channel.send(`🎲 You rolled a ${y}! 🎲`);
+        return message.channel.send(`🎲 Rodaste um ${y}! 🎲`);
     } else {
-        return message.channel.send("It seems you added some letters into your number. Please try again!");
+        return message.channel.send("Parece que adicionaste letras ao teu número. Por favor tenta outra vez!");
     }    
  };
 
@@ -19,8 +19,8 @@ exports.conf = {
 };
   
 exports.help = {
-    name: "roll",
-    description: "Roll a die!",
+    name: "roda-dado",
+    description: "Roda um dado!",
     usage: "[sides:str]",
     usageDelim: "",
 };
