@@ -21,6 +21,6 @@ exports.conf = {
       
 exports.help = {
     name: "bingo",
-    description: "Supplies bingo numbers to play bingo.",
+    description: "Retira os números do bingo para ganhares.",
     usage: ""
 };
