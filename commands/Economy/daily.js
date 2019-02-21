@@ -49,7 +49,7 @@ exports.conf = {
   
 exports.help = {
     name: "daily",
-    description: "Get a daily amount of credits or give them to someone else.",
+    description: "Obtem um montante diário de créditos ou dá-los a alguém.",
     usage: "[user:str]",
     humanUse: "(user)"
 };
