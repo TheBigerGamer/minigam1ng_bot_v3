@@ -11,7 +11,7 @@ exports.run = async (client, msg) => {
         var die = Math.random();
 
         const itemName = [
-            ["greenapple", "apple", "lemon", "potato", "bread", "rice", "egg", "chocolate"],
+            ["maça_verde", "maça", "limão", "batata", "pão", "arroz", "ovo", "chocolate"],
             [row.greenapple, row.apple, row.lemon, row.potato, row.rice, row.egg, row.bread, row.chocolate]
         ];
 
@@ -27,11 +27,11 @@ exports.run = async (client, msg) => {
         var item = items[itemName[0][results]];
         var amount = Number(itemName[1][results]) + 1;
 
-        var name = (item.name === "green apple") ? "greenapple" : item.name;
+        var name = (item.name === "maça_verde") ? "maça_verde" : item.name;
 
         db.run(`UPDATE material SET ${name} = ${amount} WHERE userId = ${msg.author.id}`);
                 
-        return msg.channel.send(`${msg.author.username}, you have found ${item.emote}. The item has been placed in your inventory.`);
+        return msg.channel.send(`${msg.author.username}, encontraste ${item.emote}. O item foi colocado no teu inventário.`);
     });
     db.close();
 };
@@ -46,7 +46,7 @@ exports.conf = {
 };
   
 exports.help = {
-    name: "harvest",
-    description: "Harvest fruits and other foods for cooking!",
+    name: "colher",
+    description: "Colhe frutos e outros materiais para cozinhar!",
     usage: "",
 };
