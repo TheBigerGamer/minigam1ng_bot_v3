@@ -1,5 +1,5 @@
 exports.run = async (client, message) => {
-    message.channel.send(`Wow. That's awful of you, ${message.author.username}. I'm just here trying to be helpful and make friends but you want to shut me down. Quite rude!`);
+    message.channel.send(`Wow. Isso é horrivel vindo de ti, ${message.author.username}. Só estou aqui para fazer amigos, e tu queres desligar-me. És mau!`);
 };
 
 exports.conf = {
@@ -12,6 +12,6 @@ exports.conf = {
       
 exports.help = {
     name: "crash",
-    description: "👀 Do it. I dare you to.",
+    description: "👀 Tenta. Desafio-te.",
     usage: ""
 };
