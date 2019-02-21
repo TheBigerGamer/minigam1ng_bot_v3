@@ -9,7 +9,7 @@ exports.run = async (client, message, [type, global]) => {
 
     const Leaders = [];
 
-    var name = global ? "Global Leaderboard" : message.guild.name + " Leaderboard";
+    var name = global ? "Podium global" : message.guild.name + " Leaderboard";
 
     const embed = new client.methods.Embed()
         .setTimestamp()
@@ -22,7 +22,7 @@ exports.run = async (client, message, [type, global]) => {
         rows.forEach((row) => {
             if (global) {
                 var user = client.users.find("id", row.userID);
-                user = (user !== null) ? user.tag : "User abandoned me";
+                user = (user !== null) ? user.tag : "Player abandonou-me";
             } else {
                 var user = message.guild.members.find("id", `${row.userID}`);
                 user = (user !== null) ? user.user.tag : null;
@@ -53,7 +53,7 @@ exports.conf = {
   
 exports.help = {
     name: "leaderboard",
-    description: "Check the guild or global leaderboards!",
+    description: "Verifica os podiums globais ou do server!",
     usage: "<credits|rep> [global]",
     usageDelim: " ",
 };
