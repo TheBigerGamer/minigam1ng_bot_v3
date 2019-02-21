@@ -6,16 +6,16 @@ exports.run = async (client, msg, [item, amount]) => {
     
     db.get(`SELECT ${object.name} FROM ${object.category[0]} WHERE userId = "${msg.author.id}"`, [], (err, row) => {
         if (err) { return console.log(err); }
-        if (!row) { return msg.reply("You have not redeemed your first daily yet!"); }
+        if (!row) { return msg.reply("Ainda não reclamaste os teus créditos diários!"); }
         amount = (amount === undefined) ? Object.values(row)[0] : amount;
-        if (amount > row) { return msg.channel.send("You don't have that much " + object.name + ", baka!"); }
+        if (amount > row) { return msg.channel.send("Não tens assim tantos " + object.name + ", baka!"); }
         
         db.run(`UPDATE ${object.category[0]} SET ${object.name} = ${Object.values(row)[0] - amount} WHERE userId = "${msg.author.id}"`);
 
         client.funcs.transactions(msg, {credit: [1, "+", (object.price[1] * amount)]}, function(data) {
             if (data.valid === false) { return; }
     
-            msg.channel.send("You have sold " + amount + " " + object.name + " for " + data.earnings + " credits.");
+            msg.channel.send("Vendeste " + amount + " " + object.name + " por " + data.earnings + " créditos.");
         });
     });
 };
@@ -29,8 +29,8 @@ exports.conf = {
 };
   
 exports.help = {
-    name: "sell",
-    description: "Sell your items!",
+    name: "vender",
+    description: "Vende os teus items",
     usage: "<item:str> [amount:int]",
     usageDelim: " "
 };
