@@ -3,7 +3,7 @@ exports.run = (client, message, [msg]) => {
     
     message.delete().catch();
     if (message.author.id === client.owner.id) { return message.channel.send(msg); }
-    return message.channel.send(`${message.author.username} (${message.author.id}) wanted to say: ${msg}`);
+    return message.channel.send(`${message.author.username} (${message.author.id}) quis dizer: ${msg}`);
 };
   
 exports.conf = {
@@ -16,6 +16,6 @@ exports.conf = {
   
 exports.help = {
     name: "say",
-    description: "Have Margarine echo what you said.",
+    description: "Faz o Winston dizer o que queres.",
     usage: "[msg:str]",
 };
