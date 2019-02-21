@@ -15,6 +15,6 @@ exports.conf = {
       
 exports.help = {
     name: "baka",
-    description: "For the stupid people.",
+    description: "Para as pessoas estúpidas.",
     usage: "[user:str]"
 };
