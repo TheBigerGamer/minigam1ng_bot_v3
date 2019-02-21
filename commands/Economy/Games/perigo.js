@@ -53,15 +53,15 @@ exports.run = async (client, message, [bet]) => {
     } else { var result = ["lost", 1, Number(-bet - 1)]; }
 
     chance = (chance) ? " | Chance: " + chance : "";
-    embed.addField("Lucky numbers:", "Starter: " + castMain + chance, true);
+    embed.addField("Números da Sorte:", "Inicial: " + castMain + chance, true);
     embed.addField("Sums:", sumAll.join(", "), true);
 
     client.funcs.transactions(message, {credit: [result[1], "+", result[2]]}, function(data) {
         if (data.valid === false) { return; }
-        else if (sumAll[0] < 4) { embed.addField("Result:", "Rolled less than a 4. Auto loss."); }
-        else if (sumAll[0] > 10) { embed.addField("Result:", "Rolled higher than a 10! Your numbers determine you " + result[0] + "!"); }
-        else if (result[0] === "lost") { embed.addField("Result:", "You have lost " + bet + " credits"); }
-        else { embed.addField("Result:", "You have won " + Math.abs(data.earnings) + " credits"); }
+        else if (sumAll[0] < 4) { embed.addField("Result:", "Rolou menos do que 4. Pedida automaticamente"); }
+        else if (sumAll[0] > 10) { embed.addField("Result:", "Rolou mais que 10! Os teus números determinam-te " + result[0] + "!"); }
+        else if (result[0] === "lost") { embed.addField("Resultado:", "Você perdeu " + bet + " créditos"); }
+        else { embed.addField("Result:", "Você ganhou " + Math.abs(data.earnings) + " créditos"); }
         
         message.channel.send({embed});
     });
@@ -77,10 +77,10 @@ exports.conf = {
   
 exports.help = {
     name: "hazard",
-    description: "Gamble your credits in a early version of craps, a dice game.",
+    description: "Joga com os teus créditos num jogo similar a caranguejos. Um jogo de dados.",
     usage: "[bet:int]",
     usageDelim: "",
-    extendedHelp: "An early English game played with two dice. The game 'Craps' developed from hazard. The game is popular in North America but is not in the rest of the world.",
+    extendedHelp: "Um jogo Ingês recente. O jogo 'Caranguejos' foi desenvolvido por perigo. Este jogo é popular na América do Norte, mas não no resto do mundo.",
     humanUse: "(Amount of credits)"
 };
 
