@@ -4,11 +4,11 @@ exports.run = async (client, msg, [item, amount]) => {
     let items = require("../../../assets/values/items.json");
     let recipe = require("../../../assets/values/recipes.json");
 
-    if (!item) { return msg.channel.send("You need to define an item to craft, baka!"); }
+    if (!item) { return msg.channel.send("Precisas de defenir um item para craftar, baka!"); }
     var product = items[item.toLowerCase()];
 
     recipe = recipe[item.toLowerCase()];
-    if (!recipe) { return msg.channel.send("I couldn't find a recipe like that!"); }
+    if (!recipe) { return msg.channel.send("Isso existe sequer?"); }
 
     if (amount === "help") {
         var recipeList = [];
@@ -18,8 +18,8 @@ exports.run = async (client, msg, [item, amount]) => {
         const embed = new client.methods.Embed()
             .setTitle(client.funcs.toTitleCase(product.name) + " " + product.emote)
             .addField("Type: " + client.funcs.toTitleCase(product.category[0]), "Subtype: " + client.funcs.toTitleCase(product.category[1]), true)
-            .addField("Price:", "Buy: " + product.price[0] + " - Sell: " + product.price[1], true)
-            .addField("Required items:", recipeList.join(", "))
+            .addField("Preço:", "Compra: " + product.price[0] + " - Venda: " + product.price[1], true)
+            .addField("Items necessários:", recipeList.join(", "))
             .setTimestamp()
             .setFooter(msg.guild.name, msg.guild.iconURL());
 
@@ -35,11 +35,11 @@ exports.run = async (client, msg, [item, amount]) => {
 
             db.get(`SELECT ${names} FROM material WHERE userId = "${msg.author.id}"`, [], (err, row) => {
                 if (err) { return console.log(err); }
-                if (!row) { return msg.reply("You haven't redeemed your first daily yet!"); }
+                if (!row) { return msg.reply("Não reclamaste os teu créditos diários ainda!"); }
                 let invAmount = Object.values(row);
 
                 for (var x = 0; x < recipe.length; x++) {
-                    if ((amount * recipe[x][1]) > invAmount[x]) { return msg.channel.send("You do not have enough " + names[x] + "! Please refer to the crafting guide to find out how much you need."); }
+                    if ((amount * recipe[x][1]) > invAmount[x]) { return msg.channel.send("Não tens créditos suficientes " + names[x] + "! Por favor dirige-te ao guia de crafting para saberes de quanto precisas."); }
                 }
 
                 for (var x = 0; x < (recipe.length - 1); x++) {
@@ -50,7 +50,7 @@ exports.run = async (client, msg, [item, amount]) => {
                     db.run(`UPDATE product SET ${product.name} = ${Object.values(row)[0] + amount} WHERE userId = ${msg.author.id}`);
                 });
 
-                msg.channel.send("You have crafted " + amount + " " + product.emote);
+                msg.channel.send("Craftaste " + amount + " " + product.emote);
             });        
             db.close();
         });
@@ -68,7 +68,7 @@ exports.conf = {
   
 exports.help = {
     name: "craft",
-    description: "Make items!",
+    description: "Faz items!",
     usage: "[item:str] [amount:str]",
     usageDelim: " ",
     humanUse: "(item name)_(amount|help)"
