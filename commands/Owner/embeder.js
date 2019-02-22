@@ -28,7 +28,7 @@ exports.run = async (client, message, [color, title, description]) => {
     if (Color === "almost black") { Color = "0x23272A"; }
     if (Color === "default") { Color = "0x000000"; }
 
-    if(!title || !description) { return message.reply("You need to provide a subject title and description!"); }
+    if(!title || !description) { return message.reply("Tens de providenciar um titulo e uma descrição para este assunto."); }
   
     message.delete().catch();
     const embed = new client.methods.Embed()
@@ -49,7 +49,7 @@ exports.run = async (client, message, [color, title, description]) => {
     
   exports.help = {
       name: "embeder",
-      description: "Embeds a simple message.",
+      description: "Embeda uma mensagem.",
       usage: "<color:str> <title:str> <description:str>",
       usageDelim: " |",
   };
