@@ -7,7 +7,7 @@ exports.run = async (client, msg, [song]) => {
   var songID = url.parse(song).path.split("/")[1];
   var id = songID.match(YTRegExp);
 
-  if (id === null) { throw "You must provide a valid YouTube URL."; }
+  if (id === null) { throw "Tens de me dar um URL do YouTube válido."; }
   const info = await getInfoAsync(`https://youtu.be/${id[1]}`);
 
   if (client.queue.has(msg.guild.id) === false) { client.queue.set(msg.guild.id, { playing: false, songs: [], }); }
@@ -20,7 +20,7 @@ exports.run = async (client, msg, [song]) => {
     image: info.thumbnail_url
   });
 
-  msg.send(`🎵 Added **${info.title}** to the queue 🎶`);
+  msg.send(`🎵 Adicionado **${info.title}** à lista 🎶`);
 };
 
 exports.conf = {
@@ -33,7 +33,7 @@ exports.conf = {
 
 exports.help = {
   name: "queueadd",
-  description: "Adds a song the the queue.",
+  description: "Adiciona uma música à lista.",
   usage: "[song:str]",
 };
 
