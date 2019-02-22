@@ -1,5 +1,5 @@
 exports.run = async (client, message) => {
-    if (!message.member.voiceChannel) { return message.channel.send("You are not in my voice channel! Come in and tell me face to face!"); }
+    if (!message.member.voiceChannel) { return message.channel.send("Tu não estás no meu canal de voz! Por isso cala-te!"); }
   
     message.member.voiceChannel.leave();
     return message.channel.send(`I have left ${message.member.voiceChannel}.`);
@@ -15,8 +15,8 @@ exports.run = async (client, message) => {
   };
   
   exports.help = {
-    name: "leave",
-    description: "Leaves the VC that you are in.",
+    name: "sair",
+    description: "Sai do CV em que estás.",
     usage: "",
     usageDelim: "",
   };
