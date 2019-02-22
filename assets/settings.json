@@ -1,0 +1,21 @@
+{
+    "token": "NTQ4NjI5MjQyMzM0ODA2MDI5.D1IHEA.hUcuD8mPCIJFjFDkdfHl5TkNDUY",
+    "ownerID": "472720369346936842",
+    "prefix": "//", 
+    "build": {
+        "version": "Beta 0.9",
+        "releaseDate": "18/01/2019"
+    },
+    "owner": {
+        "channels": {
+            "award": "533805026938978318",
+            "report": "548630581785919569"
+        },
+        "awards": {
+            "suggest": 250,
+            "bug": 500,
+            "minor": 600,
+            "major": 2000
+        }
+    }
+}
