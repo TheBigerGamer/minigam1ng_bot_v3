@@ -7,14 +7,14 @@ exports.run = async (client, message, [member, option, amount]) => {
 
     db.get(`SELECT * FROM scores WHERE userId = "${data.user[0].id}"`, [], (err, row) => {
         if (err) { return console.log(err); }
-        if (!row) { return message.reply("That user does not have any data within the database."); }
+        if (!row) { return message.reply("Esse player não tem dados na base de dados."); }
         else {
             db.run(`UPDATE scores SET ${option} = ${amount} WHERE userId ="${data.user[0].id}"`);
-            return message.reply(`Table updated. I have updated the table so that ${user.prefered}'s ${option} has been set to ${amount}!`);
+            return message.reply(`Tabela atualizada. Eu atualizei a tabela, por isso a  ${option} de ${user.prefered} foi mudada para ${amount}!`);
         }
     });
     
-    if (user.bot === true) { return message.reply("You can't change or add data about a bot user!"); }
+    if (user.bot === true) { return message.reply("Não podes mudar ou adicionar dados a um bot user!"); }
 };
 
 exports.conf = {
@@ -28,7 +28,7 @@ exports.conf = {
   
 exports.help = {
     name: "ecoedit",
-    description: "Edits a user's economy values.",
+    description: "Edita os valores de economia de um utilizador.",
     usage: "[member:str] [option:str] [amount:int]",
     usageDelim: " ",
 };
