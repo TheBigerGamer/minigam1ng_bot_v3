@@ -39,7 +39,7 @@ exports.conf = {
 
 exports.help = {
   name: "queue",
-  description: "Displays the music queue.",
+  description: "Mostra a lista de música.",
   usage: "[page:int]",
   usageDelim: "",
   extendedHelp: "",
