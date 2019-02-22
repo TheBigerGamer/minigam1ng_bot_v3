@@ -1,9 +1,9 @@
 exports.run = async (client, msg) => {
-  if (!msg.guild.voiceConnection) { throw `I am not connected in a voice channel, please add some songs to the mix first with ${msg.guild.settings.prefix}queueadd`; }
-  if (msg.guild.voiceConnection.dispatcher.paused) { return msg.send("The stream is already paused, baka!"); }
+  if (!msg.guild.voiceConnection) { throw `Não estou a transmitir nada (que seca). Dá-me algumas musicas para misturar com ${msg.guild.settings.prefix}queueadd`; }
+  if (msg.guild.voiceConnection.dispatcher.paused) { return msg.send("A transmissão já está pausada, baka!"); }
 
   msg.guild.voiceConnection.dispatcher.pause();
-  return msg.send("⏸ The mix is now paused.");
+  return msg.send("⏸ A mistura está agora pausada. Alto e pára o baile!");
 };
 
 exports.conf = {
@@ -17,7 +17,7 @@ exports.conf = {
 
 exports.help = {
   name: "pause",
-  description: "Pauses the playlist.",
+  description: "Pausa a playlist.",
   usage: "",
   usageDelim: "",
   extendedHelp: "",
