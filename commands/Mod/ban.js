@@ -4,7 +4,7 @@ exports.run = async (client, msg, [user, reason]) => {
     user = client.users.find("username", user.user[0].username);
 
     if (!reason) { return msg.reply("You must supply a reason!"); }
-    if (msg.guild.member(user).bannable === false) { return msg.reply("I cannot ban that member"); }
+    if (msg.guild.member(user).bannable === false) { return msg.reply("Não posso banir esse membro!"); }
 
     var Toast = await client.funcs.modEmbed(client, msg, "kick", user.user[0], reason);
     
@@ -27,7 +27,7 @@ exports.conf = {
       
 exports.help = {
     name: "ban",
-    description: "Bans the mentioned user.",
+    description: "Bane o player mencionado.",
     usage: "<user:str> [reason:str] [...]",
     usageDelim: " "
 };
