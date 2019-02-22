@@ -14,7 +14,7 @@ exports.run = async (client, msg) => {
 
     var info = addPerms ? local["general"][permLevel] + " " + local["addPerms"][addPerms] : local["general"][permLevel];
 
-    msg.channel.send(`Your permission level is ${info}`);
+    msg.channel.send(`O teu Nível de permissões é ${info}`);
 };
   
 exports.conf = {
@@ -27,6 +27,6 @@ exports.conf = {
   
 exports.help = {
   name: "permlevel",
-  description: "Check your permission level.",
+  description: "Mostra o teu nível de permissões.",
   usage: ""
 };
