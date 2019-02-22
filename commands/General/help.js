@@ -13,17 +13,17 @@ exports.run = async (client, msg, [cmd, mod]) => {
         
         const embed = new client.methods.Embed()
             .setColor(0x04d5fd)
-            .setTitle(`${client.user.username}'s Command Categories`)
-            .setDescription("*Do " + `\`${prefix}help module <module name>\`` + " for category commands.*")
-            .addField("Categories:", helpMessage);
+            .setTitle(`${client.user.username}'s Categorias de Comandos`)
+            .setDescription("*Usa " + `\`${prefix}help modulo <nome do modulo>\`` + " para as categorias de comando.*")
+            .addField("Categorias:", helpMessage);
         return msg.send({embed});
     } if (cmd) {
-        if (cmd === "category" || cmd === "module") {
-            if (!mod) { return msg.send("You did not supply me with a category!"); }
+        if (cmd === "categoria" || cmd === "module") {
+            if (!mod) { return msg.send("Não me forneceste uma categoria!"); }
     
             for (let cat = 0; cat < categories.length; cat++) {
                 if (categories[cat].toLowerCase() === mod.toLowerCase()) {
-                    helpMessage.push(`**${categories[cat]} Commands**: \`\`\`asciidoc`);
+                    helpMessage.push(`**${categories[cat]} Comandos**: \`\`\`asciidoc`);
                     const subCategories = Object.keys(help[categories[cat]]);
                     for (let subCat = 0; subCat < subCategories.length; subCat++) {
                         helpMessage.push(`= ${subCategories[subCat]} =`, `${help[categories[cat]][subCategories[subCat]].join("\n")}\n`);
@@ -36,7 +36,7 @@ exports.run = async (client, msg, [cmd, mod]) => {
             }
         } else {
             cmd = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
-            if (!cmd) { return msg.send("❌ | Unknown command, please run the help command with no arguments to get a list of categories."); }
+            if (!cmd) { return msg.send("❌ | Comando desconhecido, por favor usa o comando help sem argumentos para obteres uma lista de categorias."); }
     
             if (!this.runCommandInhibitors(client, msg, cmd)) { return; }
 
@@ -49,8 +49,8 @@ exports.run = async (client, msg, [cmd, mod]) => {
                 .setTitle(cmd.help.name + alias)
                 .setDescription(cmd.help.description)
                 .addField("Usage:", `\`${prefix + cmd.help.name + " " + usageAct}\``)
-                .addField("Permission level:", local[cmd.conf.permLevel]);
-            if (cmd.help.extendedHelp) { embed.addField("Extended Help:", cmd.help.extendedHelp); }
+                .addField("Nível de permissão:", local[cmd.conf.permLevel]);
+            if (cmd.help.extendedHelp) { embed.addField("Help extendida:", cmd.help.extendedHelp); }
             msg.send({embed});
         }
     }
@@ -66,7 +66,7 @@ exports.conf = {
   
 exports.help = {
     name: "help",
-    description: "Display help for a command.",
+    description: "Mostra a ajuda para um comando.",
     usage: "[command:str] [mod:str]",
     usageDelim: " ",
     humanUse: "(command|module)_ ([If module] command)"
