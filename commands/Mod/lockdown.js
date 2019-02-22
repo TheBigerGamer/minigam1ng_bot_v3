@@ -3,27 +3,27 @@ const ms = require("ms");
 exports.run = async (client, message, [time, reason]) => {
   if (!client.lockit) { client.lockit = []; }
   let validUnlocks = ["release", "unlock", "u"];
-  if (!time) { return message.reply("I need a set time to lock the channel down for!"); }
+  if (!time) { return message.reply("Preciso de um tempo para bloquear um canal temporáriamente!"); }
 
   const Lockembed = new client.methods.Embed()
     .setColor(0xDD2E44)
     .setTimestamp()
-    .setTitle("🔒 LOCKDOWN NOTICE 🔒")
-    .setDescription(`This channel has been lockdown by ${message.author.tag} for ${time}`);
-    if (reason != null) { Lockembed.addField("Reason: ", reason); }
+    .setTitle("🔒 NOTICIA DE LOCKDOWN 🔒")
+    .setDescription(`Este canal entrou em lockdown por ${message.author.tag} por ${time}`);
+    if (reason != null) { Lockembed.addField("Rasão: ", reason); }
 
   const Unlockembed = new client.methods.Embed()
     .setColor(0xDD2E44)
     .setTimestamp()
-    .setTitle("🔓 LOCKDOWN NOTICE 🔓")
-    .setDescription("This channel is now unlocked.");
+    .setTitle("🔓 NOTICIA DE LOCKDOWN 🔓")
+    .setDescription("Este canal foi desbloqueado.");
 
   if (message.channel.permissionsFor(message.author.id).has("MUTE_MEMBERS") === false) { 
     const embed = new client.methods.Embed()  
       .setColor(0xDD2E44)
       .setTimestamp()
-      .setTitle("❌ ERROR: MISSING PERMISSIONS! ❌")
-      .setDescription("You do not have the correct permissions for this command!");
+      .setTitle("❌ ERRO: FALTA DE PERMISSÕES! ❌")
+      .setDescription("Não tens permissões suficientes para executares este comando!");
     return message.channel.send({embed});  
   }  
 
@@ -57,7 +57,7 @@ exports.conf = {
   
 exports.help = {
   name: "lockdown",
-  description: "Locks or unlocks the channel.",
+  description: "Bloqueia ou desbloqueia um canal.",
   usage: "[time:str] [reason:str]",
   usageDelim: " | "
 };
