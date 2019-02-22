@@ -11,7 +11,7 @@ exports.run = async (client, msg, [term]) => {
 
         do {
             var z = text[x].trim(); var y = text[x + 1] ? text[x + 1].trim() : ""; var zed = text[x + 2] ? text[x + 2].trim() : "";
-            if (z + y + zed === "404NotFound") { return msg.channel.send("Whoops! Looks like a user by that name does not exist."); }
+            if (z + y + zed === "404NotFound") { return msg.channel.send("Ups! Parece que um player com esse nome não existe."); }
             else if (z.length > 1) {
                 if (z.startsWith("Online")) {
                     if (zed.startsWith("ago")) { info.status = z.slice(6) + " " + y + " ago"; }
@@ -58,11 +58,11 @@ exports.run = async (client, msg, [term]) => {
                     }
                 } else if (z === "All" && !info.friends) { info.friends = y.slice(1, -8); }
                 else if (isNaN(y) === false) {
-                    if (z === "Days:") { 
+                    if (z === "Dias:") { 
                         if (!info.aStats.days) { info.aStats.days = y; }
                         else { info.mStats.days = y; }
                     } 
-                    else if (z === "Score:") {
+                    else if (z === "Pontuação:") {
                         if (!info.aStats.mean) { info.aStats.mean = y; }
                         else { info.mStats.mean = y; }
                     }
@@ -72,21 +72,21 @@ exports.run = async (client, msg, [term]) => {
         } while (x < text.length);
 
         var list = [];
-        if (info.gender) { list.push("🚻 Gender: " + info.gender); }
-        if (info.birthday) { list.push("🎂 Birthday: " + info.birthday); }
-        if (info.friends) { list.push("👫 Friends: " + info.friends); }
+        if (info.gender) { list.push("🚻 Sexo: " + info.gender); }
+        if (info.birthday) { list.push("🎂 Aniversário: " + info.birthday); }
+        if (info.friends) { list.push("👫 Amigos: " + info.friends); }
 
         const embed = new client.methods.Embed()
             .setTitle(term + "'s MAL Profile")
             .setURL(url + term)
             .setDescription("Last online: " + info.status);
-            if (list.length > 0) { embed.addField("__General:__", list.join("\n")); }
-            embed.addField("__Anime:__", "🕓 Days: " + info.aStats.days + " | 📊 Mean: " + info.aStats.mean + "\n💚 Watching: " + info.aStats.watch + "\n💙 Completed: " + info.aStats.completed + "\n💛 On-Hold: " + info.aStats.hold + "\n💔 Dropped: " + info.aStats.drop + "\n🗓 Plan-to-Watch: " + info.aStats.plan, true)
-            .addField("__Manga:__", "🕓 Days: " + info.mStats.days + " | 📊 Mean: " + info.mStats.mean + "\n📗 Reading: " + info.mStats.read + "\n📘 Completed: " + info.mStats.completed + "\n📙 On-Hold: " + info.mStats.hold + "\n📕 Dropped: " + info.mStats.drop + "\n🗓 Plan-to-Read: " + info.mStats.plan, true)
+            if (list.length > 0) { embed.addField("__Geral:__", list.join("\n")); }
+            embed.addField("__Anime:__", "🕓 Dias: " + info.aStats.days + " | 📊 Significido: " + info.aStats.mean + "\n💚 Vendo: " + info.aStats.watch + "\n💙 Completado: " + info.aStats.completed + "\n💛 Em espera: " + info.aStats.hold + "\n💔 Droppado: " + info.aStats.drop + "\n🗓 Planeia ver: " + info.aStats.plan, true)
+            .addField("__Manga:__", "🕓 Dias: " + info.mStats.days + " | 📊 Significado: " + info.mStats.mean + "\n📗 Lendo: " + info.mStats.read + "\n📘 Completado: " + info.mStats.completed + "\n📙 Em espera: " + info.mStats.hold + "\n📕 Droppado: " + info.mStats.drop + "\n🗓 Planeia ler: " + info.mStats.plan, true)
             .setTimestamp()
             .setColor(0x2E51A2)
             .setThumbnail($(".user-image").find("img")[0].attribs.src)
-            .setFooter("Requested by: " + msg.author.tag);
+            .setFooter("Requestado por: " + msg.author.tag);
 
         msg.channel.send({embed});
     });    
@@ -103,7 +103,7 @@ exports.conf = {
   
 exports.help = {
     name: "mal",
-    description: "Fetch a user's profile on MyAnimeList",
+    description: "Mostra o perfil de um player no MyAnimeList",
     usage: "[term:str]",
-    extendedHelp: "There is a 30 second cooldown for each profile search to not spam the MAL site."
+    extendedHelp: "Há um cooldown de 30 segundos para cada pesquisa de perfil para não spamar o site MAL."
 };
