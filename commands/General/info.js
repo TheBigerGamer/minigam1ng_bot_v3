@@ -18,8 +18,8 @@ exports.run = async (client, message, [kind, search]) => {
 
         const statusList = {
             online: "Online",
-            idle: "Idle",
-            dnd: "Do not Disturb"
+            idle: "Adormecido (Ou a fazer alguma porra)",
+            dnd: "Não incomodes, tá bem?"
         };
     
         var Status = statusList[user.presence.status] || "Offline";
@@ -39,7 +39,7 @@ exports.run = async (client, message, [kind, search]) => {
     else if (kind === "role") { 
         let role = guild.roles.find("name", user); 
 
-        if (!role) { return message.channel.send("Looks like I can't find the role. My searchs are case-sensitive so please check before retyping."); }
+        if (!role) { return message.channel.send("Parece que não encontrei esse cargo. As minhas pesquisas são case-sensitive por isso, re-verifica antes de tentares outra vez."); }
     
         embed.addField("Role:", `${role.name} - ${role.id}`)
         .setColor(role.hexColor)
@@ -52,13 +52,13 @@ exports.run = async (client, message, [kind, search]) => {
         if (!user) { 
             embed.setThumbnail(guild.iconURL())
             .setColor(0x04d5fd)
-            .addField("Region:", guild.region, true)
-            .addField("Created:", guild.createdAt.toLocaleString(), true)
-            .addField("Owner:", `${guild.owner.user.tag} - ${guild.owner.id}`)
-            .addField("Members:", `${guild.memberCount - guild.members.filter(m => m.user.bot).size} (${guild.members.filter(m => m.user.bot).size} bots)`, true)
-            .addField("Roles:", guild.roles.size, true);
+            .addField("Região:", guild.region, true)
+            .addField("Criado:", guild.createdAt.toLocaleString(), true)
+            .addField("Dono:", `${guild.owner.user.tag} - ${guild.owner.id}`)
+            .addField("Membros:", `${guild.memberCount - guild.members.filter(m => m.user.bot).size} (${guild.members.filter(m => m.user.bot).size} bots)`, true)
+            .addField("Cargos:", guild.roles.size, true);
         } 
-        else { return message.reply("You can't ask information about a server with additional stuff!"); }
+        else { return message.reply("Não me podes perguntar informação sobre um server com informação adicional!"); }
     }
 
     message.channel.send({embed});
@@ -75,9 +75,9 @@ exports.conf = {
 
 exports.help = {
   name: "info",
-  description: "Get the server or user information.",
+  description: "Dá-te a informação sobre o server ou sobre um player.",
   usage: "[server|user|role] [search:str]",
   usageDelim: " ",
-  extendedHelp: "Need Discord info? I got you covered with this command!",
+  extendedHelp: "Precisas de informação sobre Discord? Eu esclareço-te com este comando!",
   humanUse: "([If not specified] server|user|role)_(search content)"
 };
