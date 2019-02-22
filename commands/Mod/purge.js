@@ -8,19 +8,19 @@ exports.run = async (client, message, [Amount, user]) => {
             const embed = new client.methods.Embed()
                 .setTimestamp()
                 .setAuthor(message.guild.name, message.guild.iconURL())
-                .addField(":x: No User found! :x:");
+                .addField(":x: Player não encontrado! :x:");
             return message.channel.send({embed});
         }
     }
     
-    if (!Amount || (2 > Amount) || (Amount > 99)) { return message.reply("You didn't give me an amount between 2 and 99 to delete!"); }
+    if (!Amount || (2 > Amount) || (Amount > 99)) { return message.reply("Não me deste um número entre 2 e 99 de mensagens para fazer delete!"); }
   
     if (message.channel.permissionsFor(message.author.id).has("MANAGE_MESSAGES") === false) { 
       const embed = new client.methods.Embed()
         .setColor("#FF0000")
         .setTimestamp()
-        .setTitle("❌ ERROR: MISSING PERMISSIONS! ❌")
-        .setDescription("You do not have the correct permissions for this command!");
+        .setTitle("❌ ERRO: FALTA DE PERMISSÕES! ❌")
+        .setDescription("Não tens permissões suficientes para eecutares este comando!");
       return message.channel.send({embed});  
     }
 
@@ -33,7 +33,7 @@ exports.run = async (client, message, [Amount, user]) => {
         }
 
         message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
-        return message.reply(`Purged ${Amount} messages ` + (extra || "") + "from the channel.");
+        return message.reply(`Limpas ${Amount} mensagens ` + (extra || "") + "deste canal.");
     });
 };
 
@@ -49,8 +49,8 @@ exports.conf = {
       
 exports.help = {
     name: "purge",
-    description: "Purges X amount of messages from a given channel.",
+    description: "Elimina X mensagens de um canal.",
     usage: "[Amount:int] [user:str]",
     usageDelim: " ",
-    extendedHelp: "Due to limitations, purge can only delete between 2 and 99 messages. If you wish to purge more, please wait out the cooldown (30 seconds) and do it again."
+    extendedHelp: "Devido a limitações, o purge só pode eliminar mensagens entre 2 e 99. Se queres eliminar mais, por favor espera que o cooldown acabe (30 segundos) e fa-lo outra vez."
 };
