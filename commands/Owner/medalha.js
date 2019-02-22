@@ -5,22 +5,22 @@ exports.run = async (client, message, [member, option, amount]) => {
     if (member != null) {  
         var user = client.funcs.userSearch(client, message, member); 
         if (user.username === null) { return; }
-        if (user.bot === true) { return message.reply("You can't change or add data about a bot user!"); }
-    } else { return message.reply("You didn't provide me with a user!"); }
+        if (user.bot === true) { return message.reply("Não podes mudar ou adcionar dados a um bot user!"); }
+    } else { return message.reply("Não me deste um player!"); }
 
-    if (!option) { return message.reply("I can't just give a person nothing!"); }
+    if (!option) { return message.reply("Ouve, para dar nada já bastam os políticos!"); }
 
     db.get(`SELECT * FROM badges WHERE userId = "${user.id}"`, [], (err, row) => {
         if (err) { return console.log(err); }
         if (!row) { 
             if (option.toLowerCase() === "add") { 
                 db.run("INSERT INTO badges (userId, betaTester, bugSmasher) VALUES (?, ?, ?)", [user.id, "no", "no"]);
-                return message.reply("User has been added into the table. You may now reward the person.");
+                return message.reply("Player adicionado à tabela da base de dados. Agora podes recompensa-lo.");
             }
-            else { return message.reply("That user does not have any data within the database. Please try again like this `m~badge <user> add`"); }
+            else { return message.reply("Esse player não tem nenhum dado na base de dados. Por favor tenta outra vez com `//medalha <player> add`"); }
         } else {
             db.run(`UPDATE badges SET ${option} = "${amount}" WHERE userId = "${user.id}"`);
-            return message.reply(`Table updated. I have updated the table so that ${user.username} has earned the ${option} award!`);
+            return message.reply(`Tabela atualizada. Eu atualizei a tabela, por isso o player ${user.username} ganhou o a medalha ${option}!`);
         }
     });
 };
@@ -35,8 +35,8 @@ exports.conf = {
 };
   
 exports.help = {
-    name: "badge",
-    description: "Gives a user an award based on their efforts towards Margarine.",
+    name: "medalha",
+    description: "Dá a um player uma medalha baseada nos seus esforços.",
     usage: "[member:str] [option:str] [yes|no]",
     usageDelim: " ",
 };
