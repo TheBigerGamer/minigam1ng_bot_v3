@@ -10,6 +10,6 @@ exports.run = async client => {
     await sql.get("SELECT * FROM material WHERE userId = 1", [], (err, row) => { if (err) { return; } else { return; }});
     await sql.close();
     await client.user.setPresence({ activity:  { name: ` ${client.config.prefix}help  | Playing around with ${client.owner.username}`, type: 0 } });
-    await console.log(`[${moment().format("YYYY-MM-DD HH:mm")}] This is ${client.user.username} speaking! Online and awaiting orders!`);
-    await console.log(`[${moment().format("YYYY-MM-DD HH:mm")}] Current status: Serving ${client.guilds.size} guilds and ${client.users.size} people.`);
+    await console.log(`[${moment().format("YYYY-MM-DD HH:mm")}] Daqui é ${client.user.username} falando! Online e aguardando ordens!`);
+    await console.log(`[${moment().format("YYYY-MM-DD HH:mm")}] Status: Servindo ${client.guilds.size} servers e ${client.users.size} pessoas.`);
 };
