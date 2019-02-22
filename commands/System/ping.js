@@ -1,6 +1,6 @@
 exports.run = async (client, message) => {
     const msg = await message.channel.send("Pinging...");
-    await msg.edit(`🎉 Pong! (Took: ${msg.createdTimestamp - message.createdTimestamp}ms.) 🎉`);
+    await msg.edit(`🎉 Pong! (Demorou: ${msg.createdTimestamp - message.createdTimestamp}ms.) 🎉`);
 };
   
 exports.conf = {
@@ -13,6 +13,6 @@ exports.conf = {
   
 exports.help = {
   name: "ping",
-  description: "Ping/Pong command.",
+  description: "Mostra a latência do bot.",
   usage: ""
 };
