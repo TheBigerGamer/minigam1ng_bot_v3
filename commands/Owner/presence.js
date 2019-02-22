@@ -8,7 +8,7 @@ exports.run = async (client, message, [status, game, type]) => {
     watch: "WATCHING"
   };
 
-  if (!game) { game = `Playing around with ${client.owner.username}`; } 
+  if (!game) { game = `Comandado por ${client.owner.username}`; } 
   if (game.toLowerCase() === "null") { game = null; } 
   else { game = `m~help | ${game}`; }
 
@@ -25,7 +25,7 @@ exports.conf = {
   
 exports.help = {
   name: "presence",
-  description: "Sets Margarine's status entirely",
+  description: "Atualiza o estado de Winston.",
   usage: "<online|idle|dnd|invisible> [game:str] [play|stream|listen|watch]",
   usageDelim: " | ",
   humanUse: "(online|idle|dnd|invisible)_(game)_(play|stream|listen|watch)"
