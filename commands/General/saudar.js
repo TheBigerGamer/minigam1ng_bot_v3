@@ -3,9 +3,9 @@ exports.run = async (client, msg, user) => {
     
     if (data.valid === false) { return; }
 
-    if (data.user[0].id === client.user.id) { return msg.channel.send(`Why would you try and make me greet myself, ${msg.author.username}? I'm not that lonely!`); }
+    if (data.user[0].id === client.user.id) { return msg.channel.send(`Porque tentarias fazer-me saudar-me a mim mesmo, ${msg.author.username}? Não sou assim tão solitário!`); }
 
-	msg.channel.send(`Hello ${data.user[0].prefered}! `);
+	msg.channel.send(`Olá ${data.user[0].prefered}! `);
 };
 
 exports.conf = {
@@ -18,7 +18,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: "greet",
-  description: "Have Margarine greet you or someone with a hello!",
+  name: "saudar",
+  description: "Faz o Winston saudar alguem com um olá!",
   usage: "[user:str]"
 };
