@@ -8,7 +8,7 @@ exports.run = async (client, message) => {
   const config = require("../../assets/settings.json");
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
   message.channel.send(`= GENERAL =
-• Margarine  :: ${config.version}
+• Winston  :: ${config.version}
 • Mem Usage  :: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB
 • Uptime     :: ${duration}
 
@@ -33,6 +33,6 @@ exports.conf = {
 
 exports.help = {
   name: "stats",
-  description: "Provides some details about the bot and stats.",
+  description: "Mostra os detalhes do bot e os seus stats.",
   usage: ""
 };
