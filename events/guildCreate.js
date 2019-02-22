@@ -2,12 +2,12 @@ exports.run = async (client, guild) => {
     const embed = new client.methods.Embed()
         .setTimestamp()
         .setColor(0xF1C40F)
-        .addField("To the users of " + guild.name, `Hello world! My name is ${client.user.username} and thank you for inviting me to your amazing guild! I am a somewhat helpful and fantastic bot created using Komada, a Discord.js framework. To see how I will be able to assist you, feel free to do ${client.config.prefix}help.` + "I will send you my help menu in which will provide you with some pretty awesome commands, if I do say so myself!\nIf you have any improvement ideas, found issues or bugs, or have any complaints, feel free to use my report command and let my creator know how to improve me! I do have a TOS that users will need to accept for some of my abilities. Please refer to [this link](https://github.com/Butterstroke/MargarineBot/blob/master/TermsOfService.md) for more information.");
+        .addField("Aos players de " + guild.name, `Olá mundo! O meu nome é ${client.user.username} e obrigado por me adicionares ao teu server! Eu sou muito útil e um fabtástico bot criado usando Komada, um framework do Discord.js. Para ver como é que eu posso ser util, usa ${client.config.prefix}help.` + "Eu vou-te mostra o meu menu de ajuda com os meus comandos, digo-o eu mesmo!\nSe tens ideias sobre melhoramentos, encontrate problemas ou bugs, ou tens algum complemento, usa o meu comando de reporte e faz o meu criador ser avisado!");
 
     let channel = client.funcs.defaultChannel(client, guild.id);
     if (guild.available) { client.settings.guilds.create(guild).catch(e => client.emit("log", e, "error")); }
 
     const msg = await channel.send({embed});
     var data = msg.channel.guild.members.find("id", client.owner.id);
-    if (data !== null) { channel.send(`Oh! こんにちは <@${client.owner.id}>. I'm ready to work here! Watch me excel! :thumbsup:`); }
+    if (data !== null) { channel.send(`Oh! こんにちは <@${client.owner.id}>. Pronto para trabalhar! Vê-me excel! :thumbsup:`); }
 };
