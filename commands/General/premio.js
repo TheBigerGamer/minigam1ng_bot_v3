@@ -9,8 +9,8 @@ exports.run = async (client, message, [user, type, ...text]) => {
         .setTimestamp();
 
     if (user !== undefined && message.author.id === client.owner.id) {
-        if (!type) { return message.reply("BAKA! I need a type of an award!"); }
-        if (!text) { return message.reply("Explain yourself on giving the award!"); }
+        if (!type) { return message.reply("BAKA! I need a type of an award!Preciso de um tipo de prémio!"); }
+        if (!text) { return message.reply("Explica-te nesse tipo de prémio!"); }
 
         var data = await client.funcs.userSearch(message, {user: [user], tags:["bot"], name: this.help.name});
         
@@ -18,7 +18,7 @@ exports.run = async (client, message, [user, type, ...text]) => {
 
         db.get(`SELECT credits FROM scores WHERE userId = "${data.user[0].id}"`, [], (err, row) => {
             if (err) { return console.log(err); }
-            if (!row) { return message.reply("That user has not gotten their first daily yet!"); }
+            if (!row) { return message.reply("Esse utilizador ainda não reclamou o seu primeiro prémio diáio!"); }
                 
             type = type.toLowerCase(); 
 
@@ -36,11 +36,11 @@ exports.run = async (client, message, [user, type, ...text]) => {
                 });
             };
 
-            embed.setTitle(":tada: Award Notification! :tada:")
-            .addField(`To ${data.user[0].tag} for the reason of ${text.join(" ")}`, `User has been awarded ${awards[type][1]} credits!`)
-            .setFooter("Awarded to: " + data.user[0].tag + " (" + data.user[0].id + ") on:", data.user.displayAvatarURL());
+            embed.setTitle(":tada: Notificação de Prémio! :tada:")
+            .addField(`Para ${data.user[0].tag} por ${text.join(" ")}`, `Utilizador foi premiado com ${awards[type][1]} créditos!`)
+            .setFooter("Prémio para: " + data.user[0].tag + " (" + data.user[0].id + ") on:", data.user.displayAvatarURL());
 
-            message.reply(data.user[0].ping + `(${data.user[0].id}) have been awarded ${awards[type][1]} credits!`);
+            message.reply(data.user[0].ping + `(${data.user[0].id}) foi premiado com ${awards[type][1]} créditos!`);
                     
             client.channels.get(settings.channels.award).send({embed});
             db.run(`UPDATE scores SET credits = ${row.credits + awards[type][1]} WHERE userId = "${data.user[0].id}"`);
@@ -52,14 +52,14 @@ exports.run = async (client, message, [user, type, ...text]) => {
             var sum = row.suggest + row.bugs + row.minor + row.major;
             var reward = (row.suggest * settings.suggest) + (row.bugs * settings.bug) + (row.minor * settings.minor) + (row.major * settings.major);
     
-            embed.setTitle(client.user.username + "'s Award System")
-                .setDescription(sum + " awards given equaling " + reward + " credits")
+            embed.setTitle(client.user.username + "'s Sistema de Prémios")
+                .setDescription(sum + " prémio dado equivale a " + reward + " créditos")
                 .setFooter(message.guild.name, message.guild.iconURL())
-                .addField("Description:", "For those who have signed up with the daily command, there is a way in which users can earn more credits. By suggesting or bug and issue finding and reporting them with the report command, users can earn an amount of credits once the item is added or fixed.")
-                .addField("Improvements (" + settings.suggest +  "):", row.suggest, true)
+                .addField("Descrição:", "Para aqueles que não se registaram com o comando diário, não há maneira de obterem créditos por prémios. Sugerindo encontrando e reportando erros e problemas com o comando reporte, os players podem ganhar créditos assim que o item é adicionado ou reparado.")
+                .addField("Melhoramentos (" + settings.suggest +  "):", row.suggest, true)
                 .addField("Bugs (" + settings.bug + "):", row.bugs, true)
-                .addField("Minor Issues (" + settings.minor + "):", row.minor, true)
-                .addField("Major Issues (" + settings.major + "):", row.major, true);    
+                .addField("Problemas menores (" + settings.minor + "):", row.minor, true)
+                .addField("Problemas maiores (" + settings.major + "):", row.major, true);    
             message.channel.send({embed});
         });
     }
@@ -76,8 +76,8 @@ exports.conf = {
 };
   
 exports.help = {
-    name: "award",
-    description: "Information on the awards given out.",
+    name: "prémio",
+    description: "Informação dos prémios dados.",
     usage: "[user:str] [suggest|bug|minor|major] [text:str][...]",
     usageDelim: " ",
     humanUse: " "
