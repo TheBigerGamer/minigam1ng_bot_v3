@@ -2,7 +2,7 @@ exports.run = async (client, message, [...choice]) => {
     var results = Math.ceil(Math.random() * choice.length);
     results = choice[(results - 1)];
 
-    message.channel.send(`${message.author.username}, I think **${results}** would be the best choice!`);
+    message.channel.send(`${message.author.username}, Acho que **${results}** serão a melhor escolha!`);
 };
   
 exports.conf = {
@@ -14,8 +14,8 @@ exports.conf = {
 };
     
 exports.help = {
-    name: "choose",
-    description: "The one stop picker for hard choices!",
+    name: "escolha",
+    description: "O único que é rápido a fazer escolhas fáceis!",
     usage: "[choice:str] [...]",
     usageDelim: " | ",
     humanUse: "(choice)_(another one)_(etc...)"
