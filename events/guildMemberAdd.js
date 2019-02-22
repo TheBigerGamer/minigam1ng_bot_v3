@@ -6,5 +6,5 @@ exports.run = (client, guild) => {
 
   var perm = client.channels.get(channel.id).permissionsFor(client.user).has("SEND_MESSAGES");
 
-  if (perm === true) { client.channels.get(channel.id).send(`${guild.user.username} is buttered up and has joined the server!`); }
+  if (perm === true) { client.channels.get(channel.id).send(`${guild.user.username} entrou no server!`); }
 };
