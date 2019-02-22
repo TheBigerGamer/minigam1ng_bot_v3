@@ -2,9 +2,9 @@ exports.run = async (client, msg, [Name, ID]) => {
     const prefix = msg.guild.settings.prefix || client.config.prefix;
 
     msg.delete(); 
-    if (!Name) { return msg.channel.send("You need a name of an emote to search with, baka!"); }
+    if (!Name) { return msg.channel.send("Precisas do nome do emoji para o pesquisares, baka!"); }
     if (msg.content.slice(prefix.length).startsWith("react") && (!ID)) {
-        return msg.channel.send("You need to specify a message's ID so that I can find it!").then(msg => { setTimeout(() => { msg.delete(); }, 4000); }); 
+        return msg.channel.send("Precisas de especificar o ID da mensagem para eu a encontrar!").then(msg => { setTimeout(() => { msg.delete(); }, 4000); }); 
     }
 
     let emotes = Array.from(client.emojis);
@@ -28,9 +28,9 @@ exports.conf = {
   
 exports.help = {
     name: "emoji",
-    description: "Displays an enlargened emoji.",
+    description: "Mostra um emoji.",
     usage: "[Name:str] [messageID:str]",
     usageDelim: " ",
-    extendedHelp: "Bring in your pool of emotes from other servers! Either use the big image or use the alias of react and add a message ID to react to a message instead!",
+    extendedHelp: "Coloca-te na piscina de emojis de outros servers! Usa a imagem grande ou usa o alias de uma reação e adiciona o ID de uma mensagem para reagir!",
     humanUse: "(name)_([If reacting] messageID)"
 };
