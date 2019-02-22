@@ -31,6 +31,6 @@ exports.conf = {
 
 exports.help = {
   name: "nowplaying",
-  description: "Vê o que está a dar no VC.",
+  description: "Vê o que está a dar no CV.",
   usage: ""
 };
