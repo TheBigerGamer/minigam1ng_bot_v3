@@ -4,7 +4,7 @@ exports.run = async (client, msg, [user, reason]) => {
   user = client.users.find("username", user.user[0].username);
 
   if (!reason) { return msg.reply("You must supply a reason!"); }
-  if (msg.guild.member(user).kickable === false) { return msg.reply("I cannot kick that member"); }
+  if (msg.guild.member(user).kickable === false) { return msg.reply("Não posso kickar esse membro!"); }
 
   var Toast = await client.funcs.modEmbed(client, msg, "kick", user.user[0], reason);
     
@@ -27,7 +27,7 @@ exports.conf = {
       
 exports.help = {
   name: "kick",
-  description: "Kicks the mentioned user.",
+  description: "Kicka o player mencionado.",
   usage: "[user:str] [reason:str] [...]",
   usageDelim: " "
 };
